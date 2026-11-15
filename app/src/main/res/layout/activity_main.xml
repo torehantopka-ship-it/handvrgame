@@ -20,7 +20,7 @@
         android:background="@android:color/transparent" />
 
     <!-- Hand Skeleton Overlay (Custom View) -->
-    <com.example.mrapp.HandTrackingHelper$OverlayView
+    <com.example.mrapp.HandTrackingHelper$OverlayView`/&amp;gt;`/>
         android:id="@+id/overlayView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
