@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var previewView: PreviewView
     private lateinit var sceneView: SceneView
-    private lateinit var overlayView: HandTrackingHelper.OverlayView
+    private lateinit var overlayView: HandOverlayView
     private lateinit var cameraManager: CameraManager
     private lateinit var handTrackingHelper: HandTrackingHelper
     private var isStereoMode = false
