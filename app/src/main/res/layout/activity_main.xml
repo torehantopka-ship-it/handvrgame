@@ -12,18 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <!-- Hand Skeleton Overlay (transparent, поверх камеры) -->
+    <com.example.mrapp.HandOverlayView
+        android:id="@+id/overlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <!-- 3D Scene Overlay (Transparent) -->
     <io.github.sceneview.SceneView
         android:id="@+id/sceneView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent" />
-
-    <!-- Hand Skeleton Overlay (Custom View) -->
-    <com.example.mrapp.HandTrackingHelper$OverlayView
-        android:id="@+id/overlayView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
     <!-- Simple UI Button -->
     <Button
