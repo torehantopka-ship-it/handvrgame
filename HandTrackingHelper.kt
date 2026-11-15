@@ -1,20 +1,15 @@
 package com.example.mrapp
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.view.View
 import androidx.camera.core.ImageProxy
+import com.google.mediapipe.framework.image.BitmapImageBuilder
 import com.google.mediapipe.tasks.vision.handlandmarker.HandLandmarker
 import com.google.mediapipe.tasks.vision.handlandmarker.HandLandmarkerResult
-import com.google.mediapipe.framework.image.BitmapImageBuilder
-import com.google.mediapipe.framework.image.MPImage
 import java.util.concurrent.Executors
 
 class HandTrackingHelper(
     private val context: Context,
-    private val overlayView: OverlayView,
+    private val overlayView: HandOverlayView,   // <-- было HandTrackingHelper.OverlayView
     private val onResult: (HandLandmarkerResult) -> Unit
 ) {
     private var handLandmarker: HandLandmarker? = null
@@ -32,9 +27,7 @@ class HandTrackingHelper(
                 overlayView.setResults(result)
                 onResult(result)
             }
-            .setErrorListener { error ->
-                error.printStackTrace()
-            }
+            .setErrorListener { error -> error.printStackTrace() }
             .build()
         handLandmarker = HandLandmarker.createFromOptions(context, options)
     }
@@ -44,20 +37,5 @@ class HandTrackingHelper(
         val mpImage = BitmapImageBuilder(bitmap).build()
         handLandmarker?.detectAsync(mpImage, System.currentTimeMillis())
         imageProxy.close()
-    }
-
-    class OverlayView(context: Context) : View(context) {
-        private var results: HandLandmarkerResult? = null
-        private val paint = Paint().apply { color = Color.GREEN; strokeWidth = 5f }
-
-        fun setResults(result: HandLandmarkerResult) {
-            this.results = result
-            invalidate()
-        }
-
-        override fun onDraw(canvas: Canvas) {
-            super.onDraw(canvas)
-            // Draw skeleton lines using results.landmarks() here
-        }
     }
 }
